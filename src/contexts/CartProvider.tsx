@@ -43,11 +43,20 @@ function reducer(state: CartItemsType, action: ReducerActionType ) : CartItemsTy
       if (!action.payload) throw new Error('Payload is required!');
       const {id} = action.payload
       const filteredCart = state.filter(item => item.id !== id)
-      return filteredCart
+      const itemExists = state.find(item => item.id === id)
+      if (itemExists) return filteredCart.concat({
+          ...itemExists, qty : action.payload.qty
+        })
     }
     case 4 : {
       return []
-    } 
+    }
+    case 5 : {
+      if (!action.payload) throw new Error('Payload is required!');
+      const {id} = action.payload
+      const filteredCart = state.filter(item => item.id !== id)
+      return filteredCart
+    }
     default : {
       throw new Error('Unexpedted operation!')
     }
