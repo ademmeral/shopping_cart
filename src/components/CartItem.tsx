@@ -34,7 +34,7 @@ const CartItem = ({item, dispatch} : CartItemPropsType) => {
             .map(key => (
               <option key={key} value={key}>{key}</option>
             ))
-        }
+        } 
       </select>
       <p>{priceFormatter(item.price, item.qty)}</p>
       <button

@@ -10,7 +10,7 @@ const Cart = () => {
 
   function handleClick(){
     setCheckout(true)
-    dispatch({type: 5})
+    dispatch({type: 4})
   }
 
   const Component = !checkout ? (

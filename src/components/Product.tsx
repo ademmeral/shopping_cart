@@ -1,6 +1,6 @@
 import { ProductType } from "../contexts/ProductsProvider"
 import { ReducerActionType } from "../contexts/CartProvider"
-import { PointerEvent, memo, useState } from "react"
+import { PointerEvent, memo, useEffect, useRef, useState } from "react"
 import { CartItemsType } from "../contexts/CartProvider"
 import priceFormatter from "../modules/priceFormatter"
 
@@ -8,20 +8,30 @@ export type ProductPropsType = {
   product : ProductType,
   cart: CartItemsType
   dispatch: React.Dispatch<ReducerActionType>
-}
+} 
 
 const Product = ({product, cart, dispatch} : ProductPropsType) => {
   const [inCart, setInCart] = useState(
     cart.some(item => item.id === product.id)
   )
+  const [disabled, setDisabled] = useState(false)
+  const timeout = useRef<number>(0)
 
   const src: string = 
     new URL(`../images/${product.sku}.jpg`, import.meta.url).href
 
   const handleClick = (e:PointerEvent<HTMLButtonElement>) => {
+    setDisabled(() => true)
     dispatch({type: 1, payload: {...product, qty: 1}})
-    if (!inCart) setInCart(true)
+    if (!inCart) setInCart(true);
+    timeout.current = setTimeout(() => {
+      setDisabled(() => false)
+    }, 2000)
   }
+
+  useEffect(() => {
+    return () => clearTimeout(timeout.current)
+  }, [])
 
   return (
     <li>
@@ -33,7 +43,11 @@ const Product = ({product, cart, dispatch} : ProductPropsType) => {
           <span>{inCart ? "→ Item in Cart: ✔️" : ''}</span>
         </figcaption>
       </figure>
-      <button onClick={handleClick}>Add to Cart</button>
+      <button 
+        onClick={handleClick}
+        disabled={disabled}
+      >Add to Cart
+      </button>
     </li>
   )
 }
