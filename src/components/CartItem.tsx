@@ -38,7 +38,7 @@ const CartItem = ({item, dispatch} : CartItemPropsType) => {
       </select>
       <p>{priceFormatter(item.price, item.qty)}</p>
       <button
-        onClick={() => dispatch({type: 3, payload: item})}
+        onClick={() => dispatch({type: 5, payload: item})}
       >❌</button>
     </li>
   )
