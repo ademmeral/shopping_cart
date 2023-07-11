@@ -1,0 +1,162 @@
+@font-face 
+    font-family: 'Nunito', sans-serif
+    src: url('https://fonts.googleapis.com/css2?family=Nunito&display=swap')
+
+* 
+    margin: 0
+    padding: 0
+    box-sizing: border-box
+
+html,
+body,
+#root,
+.App
+    min-height: 100vh
+
+.App
+    font-family: 'Nunito', sans-serif
+    font-weight: 500
+    display: grid
+    grid-template-rows: max-content 1fr max-content
+a
+    color: inherit
+    text-decoration: none
+ul
+    list-style: none
+a,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+button
+    white-space: nowrap
+input,
+button,
+textarea,
+select
+    font-size: inherit
+    color: inherit
+    font-family: inherit
+.container
+    max-width: 1280px
+    height: 100%
+    margin: 0 auto
+    padding: 0 .25rem
+.muted
+    opacity: .6
+button
+    cursor: pointer
+button:disabled
+    cursor: not-allowed
+img
+    width: 100%
+    object-fit: cover
+/*---------NAV----------*/
+nav.container
+    display: flex
+    justify-content: space-between
+    align-items: center
+    border-bottom: 2px solid #000
+    padding: 0.5rem
+    .logo
+        font-size: 2.5rem
+    button
+        padding: 0.5rem 1.5rem
+        margin-top: 0.25rem
+/*---------PRODUCT LIST / MAIN----------*/
+main
+    .container
+        padding-top: 1.5rem
+    ul
+        display: grid
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr))
+        gap: 0.5rem
+        li
+            figcaption
+                margin-top: 0.25rem
+        button
+            padding: 0.5rem 1.5rem
+            margin-top: 0.75rem
+        img
+            margin-top: 0.25rem
+            border-radius: 10px
+/*---------FOOTER----------*/
+footer
+    margin-top: 2rem
+    .container
+        display: flex
+        justify-content: space-between
+        align-items: center
+        border-top: 2px solid #000
+        padding-top: 0.5rem
+/*---------CART----------*/
+
+.cart__items
+    min-height: 95%
+    display: flex
+    flex-direction: column
+    padding-top: 1rem
+    padding-bottom: .5rem
+    li
+        display: flex
+        justify-content: space-between
+        align-items: center
+        padding-top: 0.5rem
+        h3
+            flex-basis: 200px
+            white-space: pre-wrap
+        figure
+            max-width: 20%
+            display: flex
+            align-items: center
+            gap: 1.5rem
+            img 
+                border-radius: 10px 
+        &:where(select, button)
+            width: max-content
+            height: max-content
+        button
+            padding: 0.25rem
+        select
+            width: 70px
+            height: 35px
+            color: #000
+            outline: 1px solid #000
+            border: none
+            border-radius: 5px
+            &:focus
+                outline: 2px solid goldenrod
+.checkout.btn
+    display: block
+    margin-top: 1rem
+    padding: 0.5rem 2rem
+    width: 100%
+    max-width: 300px
+    margin: 0 auto
+    justify-self: end
+
+/*---------MEDIA QUESRIES----------*/
+@media screen and (max-width: 850px) 
+    .logo
+        font-size: 2rem   
+@media screen and (max-width: 600px) 
+    .item 
+        figure
+            display: none
+@media screen and (max-width: 500px) 
+    .logo
+        font-size: 1.75rem   
+    .btn
+        padding: 0.25rem 0.75rem
+    footer 
+        .container
+            flex-direction: column
+    .copyr
+        margin: 0.5rem 0
+    .checkout-btn
+        width: 100%
+        max-width: 100%
+    
